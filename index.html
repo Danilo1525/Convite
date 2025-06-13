@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Alguém Muito Especial | Turma 5B</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rosa-principal: #ff66b2;
+            --rosa-claro: #ffb6e1;
+            --rosa-pastel: #ffd6e7;
+            --rosa-escuro: #d23369;
+            --branco: #ffffff;
+            --preto: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--rosa-pastel);
+            color: var(--preto);
+            overflow-x: hidden;
+        }
+        
+        /* Efeito de partículas flutuantes */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: var(--rosa-claro);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Header com efeito especial */
+        header {
+            background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-escuro));
+            color: var(--branco);
+            text-align: center;
+            padding: 4rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 8s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+            }
+            100% {
+                transform: scale(1.2);
+            }
+        }
+        
+        .logo {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+            background: linear-gradient(to right, var(--branco), var(--rosa-claro));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px var(--branco), 0 0 20px var(--rosa-claro);
+            }
+            to {
+                text-shadow: 0 0 15px var(--branco), 0 0 30px var(--rosa-principal);
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: -3rem auto 0;
+            padding: 0 2rem;
+            position: relative;
+        }
+        
+        /* Cards com efeito 3D */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 15px 35px rgba(210, 51, 105, 0.1);
+            backdrop-filter: blur(5px);
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: perspective(1000px) translateY(-10px) rotateX(5deg);
+            box-shadow: 0 25px 50px rgba(210, 51, 105, 0.2);
+        }
+        
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 65%, rgba(255, 182, 225, 0.3) 100%);
+            pointer-events: none;
+        }
+        
+        h1, h2, h3 {
+            color: var(--rosa-escuro);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--rosa-principal), var(--rosa-escuro));
+            border-radius: 2px;
+        }
+        
+        /* Vídeo */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            margin: 3rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(210, 51, 105, 0.3);
+            transform: scale(0.95);
+            transition: all 0.5s ease;
+            background: #000;
+        }
+        
+        .video-container:hover {
+            transform: scale(1);
+            box-shadow: 0 25px 50px rgba(210, 51, 105, 0.4);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-message {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .video-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Botões animados */
+        .btn {
+            background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-escuro));
+            color: var(--branco);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(210, 51, 105, 0.4);
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-principal));
+            z-index: -1;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(210, 51, 105, 0.6);
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        /* Seção final */
+        .final-section {
+            background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-escuro));
+            color: var(--branco);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .final-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.1)" d="M0,0 L100,0 L50,100 L0,100 Z" /></svg>');
+            background-size: 200% 200%;
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+        
+        .message-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .message-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .special-btn {
+            background: var(--branco);
+            color: var(--rosa-escuro);
+            font-weight: 700;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .special-btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0));
+            z-index: -1;
+        }
+        
+        .special-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .special-btn:active {
+            transform: scale(0.98);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--rosa-escuro), var(--preto));
+            color: var(--branco);
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+        }
+        
+        /* Efeitos de scroll */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3.5rem;
+            }
+            
+            header {
+                padding: 3rem 0;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas flutuantes -->
+    <div class="particles" id="particles"></div>
+    
+    <header>
+        <div class="logo">5B</div>
+        <div class="subtitle">Turma de Informática para Internet</div>
+        <div>IFMS - 2023-2025</div>
+    </header>
+    
+    <div class="container">
+        <section class="card hidden">
+            <h1>Para Alguém Muito Especial</h1>
+            <p>Professor, esta página foi criada com todo carinho pela turma 5B para expressar o quanto você é importante para nós.</p>
+            <p>Role para baixo para descobrir nossa mensagem especial...</p>
+        </section>
+        
+        <section class="card hidden">
+            <h2>O Impacto Que Você Teve</h2>
+            <p>Durante esses anos no curso técnico, suas aulas foram muito mais do que apenas conteúdo acadêmico.</p>
+            <p>Você nos mostrou que por trás de cada tabela e relacionamento no banco de dados, há histórias e possibilidades.</p>
+            <p>Sua paciência e dedicação fizeram toda a diferença em nossa jornada.</p>
+        </section>
+        
+        <div class="hidden" id="videoTrigger"></div>
+        
+        <section class="card hidden">
+            <h2>Nossa Mensagem em Vídeo</h2>
+            <p>A turma toda se reuniu para gravar esta mensagem especial para você:</p>
+            
+            <div class="video-container">
+                <!-- Substitua pelo embed do seu vídeo real -->
+                <iframe src="https://www.youtube.com/embed/SEU_VIDEO_AQUI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <div class="video-message" id="videoMessage">
+                <p>Esperamos que tenha gostado do nosso vídeo, feito com todo carinho!</p>
+                <p>Cada palavra dita foi sincera e vem direto do coração de cada um de nós.</p>
+            </div>
+        </section>
+        
+        <section class="final-section hidden">
+            <h2 style="color: var(--branco);">Nosso Pedido Especial</h2>
+            <div class="message-text">
+                <p>Professor, depois de tudo o que compartilhamos, temos um pedido muito especial para fazer...</p>
+                <p style="font-size: 1.4rem; margin: 2rem 0;"><strong>Queremos muito que você seja nosso padrinho de turma!</strong></p>
+                <p>Será uma honra ter você como nosso padrinho, representando todo o conhecimento, apoio e carinho que nos dedicou ao longo desses anos.</p>
+            </div>
+            <button class="special-btn" id="acceptBtn">Aceitar ser nosso padrinho?</button>
+        </section>
+    </div>
+    
+    <footer class="hidden">
+        <p>Turma 5B - Informática para Internet | IFMS | 2025</p>
+        <p style="margin-top: 0.5rem;">Com carinho, seus alunos</p>
+    </footer>
+    
+    <script>
+        // Criar partículas flutuantes
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamanho aleatório entre 5px e 15px
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posição inicial aleatória
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Atraso na animação para criar movimento variado
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                // Opacidade variada
+                particle.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Verificar quando elementos devem aparecer no scroll
+        function checkScroll() {
+            const elements = document.querySelectorAll('.hidden');
+            const videoTrigger = document.getElementById('videoTrigger');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('show');
+                }
+            });
+            
+            // Mostrar mensagem pós-vídeo quando o vídeo estiver visível
+            if (videoTrigger.getBoundingClientRect().top < window.innerHeight) {
+                setTimeout(() => {
+                    document.getElementById('videoMessage').classList.add('show');
+                }, 2000);
+            }
+        }
+        
+        // Botão especial
+        document.getElementById('acceptBtn').addEventListener('click', function() {
+            this.textContent = 'Obrigado por aceitar ser nosso padrinho! ❤️';
+            this.style.backgroundColor = 'var(--rosa-principal)';
+            this.style.color = 'var(--branco)';
+            
+            // Criar efeito de confete
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('particle');
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = ['var(--branco)', 'var(--rosa-claro)', 'var(--rosa-principal)'][Math.floor(Math.random() * 3)];
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = '-10px';
+                confetti.style.position = 'absolute';
+                confetti.style.animation = `confettiFall ${Math.random() * 3 + 2}s linear forwards`;
+                
+                document.querySelector('.final-section').appendChild(confetti);
+                
+                // Adicionar keyframes dinamicamente
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes confettiFall {
+                        to {
+                            transform: translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        });
+        
+        // Inicializar
+        window.addEventListener('load', function() {
+            createParticles();
+            
+            // Adicionar estilos dinâmicos para as partículas
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes float {
+                    0% {
+                        transform: translateY(0) rotate(0deg);
+                        opacity: 0.6;
+                    }
+                    50% {
+                        opacity: 0.9;
+                    }
+                    100% {
+                        transform: translateY(-100vh) rotate(${Math.random() * 360}deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
+</body>
+</html>
